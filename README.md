@@ -3,12 +3,10 @@
 A full-stack product marketplace built for the 1Fi SDE Intern assignment. The application provides a 1Fi-inspired shopping experience with product variants and mutual-fund-backed EMI plans.
 
 ## Live Demo
-
-Coming soon
+ https://1fi-assignment-eight.vercel.app/
 
 ## GitHub Repository
-
-Coming soon
+https://github.com/Pathaksandeep2505/1fi-assignment
 
 ## Features
 
