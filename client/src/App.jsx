@@ -415,35 +415,49 @@ function Shop() {
 
 function Marketplace() {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  async function loadProducts() {
+    try {
+      setLoading(true);
+      setError("");
+
+      const res = await fetch(`${API}/products`);
+
+      if (!res.ok) {
+        throw new Error("Unable to load products");
+      }
+
+      const list = await res.json();
+
+      const detailed = await Promise.all(
+        list.map(async (product) => {
+          try {
+            const detailRes = await fetch(
+              `${API}/products/${product.slug}`
+            );
+
+            if (!detailRes.ok) return product;
+
+            return await detailRes.json();
+          } catch {
+            return product;
+          }
+        })
+      );
+
+      setProducts(detailed);
+    } catch (err) {
+      console.error(err);
+      setProducts([]);
+      setError("Unable to load products. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  }
 
   useEffect(() => {
-    async function loadProducts() {
-      try {
-        const res = await fetch(`${API}/products`);
-        const list = await res.json();
-
-        const detailed = await Promise.all(
-          list.map(async (product) => {
-            try {
-              const detailRes = await fetch(
-                `${API}/products/${product.slug}`
-              );
-
-              if (!detailRes.ok) return product;
-
-              return await detailRes.json();
-            } catch {
-              return product;
-            }
-          })
-        );
-
-        setProducts(detailed);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
     loadProducts();
   }, []);
 
@@ -456,21 +470,58 @@ function Marketplace() {
           <h2>Products made easier to pay for.</h2>
 
           <p>
-            Choose a product, select your variant and pick an EMI plan backed
-            by mutual funds.
+            Choose a product, select your variant and pick an EMI plan
+            backed by mutual funds.
           </p>
         </div>
 
-        <span className="products-count">
-          {products.length} Products
-        </span>
+        {!loading && !error && (
+          <span className="products-count">
+            {products.length} Products
+          </span>
+        )}
       </div>
 
-      <div className="product-grid">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
+      {loading && (
+        <div className="marketplace-status">
+          <div className="loading-spinner"></div>
+          <h3>Loading products...</h3>
+          <p>Fetching the latest products and EMI options.</p>
+        </div>
+      )}
+
+      {!loading && error && (
+        <div className="marketplace-status error-state">
+          <div className="status-icon">!</div>
+          <h3>Unable to load products</h3>
+          <p>Please check your connection and try again.</p>
+
+          <button
+            className="retry-btn"
+            onClick={loadProducts}
+          >
+            Try Again →
+          </button>
+        </div>
+      )}
+
+      {!loading && !error && products.length === 0 && (
+        <div className="marketplace-status">
+          <h3>No products available</h3>
+          <p>Please check back again later.</p>
+        </div>
+      )}
+
+      {!loading && !error && products.length > 0 && (
+        <div className="product-grid">
+          {products.map((product) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
