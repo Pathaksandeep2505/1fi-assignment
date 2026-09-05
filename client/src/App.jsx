@@ -9,7 +9,8 @@ import {
 } from "react-router-dom";
 import "./index.css";
 
-const API = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+const API =
+  import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
 /* =========================
    HEADER
@@ -34,7 +35,10 @@ function Header() {
           <a href="/#benefits">Benefits</a>
         </nav>
 
-        <button className="shop-btn" onClick={() => navigate("/shop")}>
+        <button
+          className="shop-btn"
+          onClick={() => navigate("/shop")}
+        >
           Shop Now →
         </button>
       </div>
@@ -81,15 +85,19 @@ function Home() {
   }, []);
 
   const heroProduct =
-    products.find((item) => item.slug === "iphone-17-pro") || products[0];
+    products.find(
+      (item) => item.slug === "iphone-17-pro"
+    ) || products[0];
 
   const heroPlan = useMemo(() => {
     if (!heroProduct?.emiPlans?.length) return null;
 
-    return heroProduct.emiPlans.reduce((lowest, current) =>
-      Number(current.monthly_payment) < Number(lowest.monthly_payment)
-        ? current
-        : lowest
+    return heroProduct.emiPlans.reduce(
+      (lowest, current) =>
+        Number(current.monthly_payment) <
+        Number(lowest.monthly_payment)
+          ? current
+          : lowest
     );
   }, [heroProduct]);
 
@@ -103,7 +111,9 @@ function Home() {
         {/* HERO */}
         <section className="hero">
           <div className="hero-content">
-            <span className="hero-badge">SMARTER WAY TO SHOP</span>
+            <span className="hero-badge">
+              SMARTER WAY TO SHOP
+            </span>
 
             <h1>
               Buy what you love.
@@ -112,17 +122,23 @@ function Home() {
             </h1>
 
             <p className="hero-description">
-              Get premium products with flexible EMI plans backed by mutual
-              funds. Choose your product, select a plan and enjoy a simpler
-              way to pay.
+              Get premium products with flexible EMI plans
+              backed by mutual funds. Choose your product,
+              select a plan and enjoy a simpler way to pay.
             </p>
 
             <div className="hero-actions">
-              <a href="#products" className="primary-btn large-btn">
+              <a
+                href="#products"
+                className="primary-btn large-btn"
+              >
                 Explore Products →
               </a>
 
-              <a href="#how-it-works" className="secondary-btn">
+              <a
+                href="#how-it-works"
+                className="secondary-btn"
+              >
                 How it works
               </a>
             </div>
@@ -130,6 +146,7 @@ function Home() {
             <div className="hero-trust-row">
               <div className="hero-trust">
                 <span>✓</span>
+
                 <div>
                   <strong>0% EMI</strong>
                   <small>No-cost plans available</small>
@@ -138,6 +155,7 @@ function Home() {
 
               <div className="hero-trust">
                 <span>◈</span>
+
                 <div>
                   <strong>Mutual Fund Backed</strong>
                   <small>Smarter financing</small>
@@ -146,6 +164,7 @@ function Home() {
 
               <div className="hero-trust">
                 <span>🔒</span>
+
                 <div>
                   <strong>Secure</strong>
                   <small>Protected checkout</small>
@@ -157,7 +176,10 @@ function Home() {
           <div className="hero-card">
             {heroPlan && (
               <div className="floating-tag">
-                From ₹{Number(heroPlan.monthly_payment).toLocaleString()}
+                From ₹
+                {Number(
+                  heroPlan.monthly_payment
+                ).toLocaleString()}
                 /month
               </div>
             )}
@@ -167,11 +189,16 @@ function Home() {
             {heroProduct ? (
               <img
                 className="hero-product-image"
-                src={heroVariant?.image_url || heroProduct.image_url}
+                src={
+                  heroVariant?.image_url ||
+                  heroProduct.image_url
+                }
                 alt={heroProduct.name}
               />
             ) : (
-              <div className="hero-loading">Loading...</div>
+              <div className="hero-loading">
+                Loading...
+              </div>
             )}
 
             {heroProduct && (
@@ -186,12 +213,18 @@ function Home() {
                     <span>Monthly EMI</span>
 
                     <strong>
-                      ₹{Number(heroPlan.monthly_payment).toLocaleString()}
+                      ₹
+                      {Number(
+                        heroPlan.monthly_payment
+                      ).toLocaleString()}
                     </strong>
 
                     <small>
                       {heroPlan.tenure_months} months ·{" "}
-                      {Number(heroPlan.interest_rate)}% interest
+                      {Number(
+                        heroPlan.interest_rate
+                      )}
+                      % interest
                     </small>
                   </div>
                 )}
@@ -201,16 +234,21 @@ function Home() {
         </section>
 
         {/* PRODUCTS */}
-        <section className="products-section" id="products">
+        <section
+          className="products-section"
+          id="products"
+        >
           <div className="section-heading">
             <div>
-              <span className="eyebrow">FEATURED PRODUCTS</span>
+              <span className="eyebrow">
+                FEATURED PRODUCTS
+              </span>
 
               <h2>Choose what you love.</h2>
 
               <p>
-                Premium smartphones with flexible variants and EMI plans
-                designed around your budget.
+                Premium smartphones with flexible variants
+                and EMI plans designed around your budget.
               </p>
             </div>
 
@@ -221,19 +259,30 @@ function Home() {
 
           <div className="product-grid">
             {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard
+                key={product.id}
+                product={product}
+              />
             ))}
           </div>
         </section>
 
         {/* HOW IT WORKS */}
-        <section className="how-section" id="how-it-works">
+        <section
+          className="how-section"
+          id="how-it-works"
+        >
           <div className="section-heading centered">
-            <span className="eyebrow">HOW IT WORKS</span>
+            <span className="eyebrow">
+              HOW IT WORKS
+            </span>
 
             <h2>Three simple steps.</h2>
 
-            <p>Everything stays simple from selection to checkout.</p>
+            <p>
+              Everything stays simple from selection to
+              checkout.
+            </p>
           </div>
 
           <div className="steps">
@@ -244,8 +293,8 @@ function Home() {
               <h3>Choose a product</h3>
 
               <p>
-                Select your favourite smartphone and choose the variant that
-                fits you best.
+                Select your favourite smartphone and choose
+                the variant that fits you best.
               </p>
             </div>
 
@@ -256,8 +305,9 @@ function Home() {
               <h3>Select EMI</h3>
 
               <p>
-                Compare monthly payments, tenures, interest rates and cashback
-                before selecting your plan.
+                Compare monthly payments, tenures, interest
+                rates and cashback before selecting your
+                plan.
               </p>
             </div>
 
@@ -268,23 +318,29 @@ function Home() {
               <h3>Confirm & enjoy</h3>
 
               <p>
-                Confirm your selected plan and continue towards your purchase
-                with confidence.
+                Confirm your selected plan and continue
+                towards your purchase with confidence.
               </p>
             </div>
           </div>
         </section>
 
         {/* BENEFITS */}
-        <section className="benefits-section" id="benefits">
+        <section
+          className="benefits-section"
+          id="benefits"
+        >
           <div className="benefit-content">
             <span className="eyebrow">WHY 1FI</span>
 
-            <h2>Premium purchases. Smarter payments.</h2>
+            <h2>
+              Premium purchases. Smarter payments.
+            </h2>
 
             <p>
-              1Fi brings product discovery and flexible financing together in
-              one simple shopping experience.
+              1Fi brings product discovery and flexible
+              financing together in one simple shopping
+              experience.
             </p>
 
             <div className="benefit-list">
@@ -292,9 +348,12 @@ function Home() {
                 <span>✓</span>
 
                 <p>
-                  <strong>Transparent EMI plans</strong>
+                  <strong>
+                    Transparent EMI plans
+                  </strong>
                   <br />
-                  Know your monthly payment, tenure and total payable amount.
+                  Know your monthly payment, tenure and
+                  total payable amount.
                 </p>
               </div>
 
@@ -302,9 +361,12 @@ function Home() {
                 <span>✓</span>
 
                 <p>
-                  <strong>Multiple flexible tenures</strong>
+                  <strong>
+                    Multiple flexible tenures
+                  </strong>
                   <br />
-                  Pick a monthly plan that fits comfortably within your budget.
+                  Pick a monthly plan that fits comfortably
+                  within your budget.
                 </p>
               </div>
 
@@ -314,7 +376,8 @@ function Home() {
                 <p>
                   <strong>Mutual fund backed</strong>
                   <br />
-                  A smarter approach to financing your purchase.
+                  A smarter approach to financing your
+                  purchase.
                 </p>
               </div>
             </div>
@@ -322,14 +385,17 @@ function Home() {
 
           {heroProduct && heroPlan && (
             <div className="benefit-box">
-              <span className="benefit-label">YOUR PURCHASE</span>
+              <span className="benefit-label">
+                YOUR PURCHASE
+              </span>
 
               <h3>{heroProduct.name}</h3>
 
               <strong className="benefit-price">
                 ₹
                 {Number(
-                  heroVariant?.price || heroProduct.price
+                  heroVariant?.price ||
+                    heroProduct.price
                 ).toLocaleString()}
               </strong>
 
@@ -337,23 +403,40 @@ function Home() {
 
               <div className="mini-row">
                 <span>Monthly EMI</span>
+
                 <b>
-                  ₹{Number(heroPlan.monthly_payment).toLocaleString()}
+                  ₹
+                  {Number(
+                    heroPlan.monthly_payment
+                  ).toLocaleString()}
                 </b>
               </div>
 
               <div className="mini-row">
                 <span>Tenure</span>
-                <b>{heroPlan.tenure_months} months</b>
+
+                <b>
+                  {heroPlan.tenure_months} months
+                </b>
               </div>
 
               <div className="mini-row">
                 <span>Interest</span>
-                <b>{Number(heroPlan.interest_rate)}%</b>
+
+                <b>
+                  {Number(
+                    heroPlan.interest_rate
+                  )}
+                  %
+                </b>
               </div>
 
               <div className="cashback-mini">
-                + ₹{Number(heroPlan.cashback).toLocaleString()} cashback
+                + ₹
+                {Number(
+                  heroPlan.cashback
+                ).toLocaleString()}{" "}
+                cashback
               </div>
             </div>
           )}
@@ -370,7 +453,8 @@ function Home() {
 ========================= */
 
 function Shop() {
-  const [activeTab, setActiveTab] = useState("marketplace");
+  const [activeTab, setActiveTab] =
+    useState("marketplace");
 
   return (
     <>
@@ -385,58 +469,94 @@ function Shop() {
           </h1>
 
           <p>
-            Explore products and flexible EMI options designed around your
-            budget.
+            Explore products and flexible EMI options
+            designed around your budget.
           </p>
         </section>
 
         <section className="shop-tabs-section">
           <div className="shop-tabs">
             <button
-              className={activeTab === "brands" ? "active" : ""}
+              className={
+                activeTab === "brands"
+                  ? "active"
+                  : ""
+              }
               onClick={() => setActiveTab("brands")}
             >
               <span>🏷️</span>
               <strong>Top Brands</strong>
-              <small>Explore popular brands</small>
+              <small>
+                Explore popular brands
+              </small>
             </button>
 
             <button
-              className={activeTab === "stores" ? "active" : ""}
+              className={
+                activeTab === "stores"
+                  ? "active"
+                  : ""
+              }
               onClick={() => setActiveTab("stores")}
             >
               <span>📍</span>
               <strong>Nearby Stores</strong>
-              <small>Find stores near you</small>
+              <small>
+                Find stores near you
+              </small>
             </button>
 
             <button
-              className={activeTab === "marketplace" ? "active" : ""}
-              onClick={() => setActiveTab("marketplace")}
+              className={
+                activeTab === "marketplace"
+                  ? "active"
+                  : ""
+              }
+              onClick={() =>
+                setActiveTab("marketplace")
+              }
             >
               <span>🛍️</span>
               <strong>1Fi Marketplace</strong>
-              <small>Shop products on EMI</small>
+              <small>
+                Shop products on EMI
+              </small>
             </button>
           </div>
 
           {activeTab === "brands" && (
             <div className="shop-empty">
-              <div className="shop-empty-icon">🏷️</div>
+              <div className="shop-empty-icon">
+                🏷️
+              </div>
+
               <h2>Top Brands</h2>
-              <p>Brand discovery will be available here soon.</p>
+
+              <p>
+                Brand discovery will be available here
+                soon.
+              </p>
             </div>
           )}
 
           {activeTab === "stores" && (
             <div className="shop-empty">
-              <div className="shop-empty-icon">📍</div>
+              <div className="shop-empty-icon">
+                📍
+              </div>
+
               <h2>Nearby Stores</h2>
-              <p>Nearby store discovery will be available here soon.</p>
+
+              <p>
+                Nearby store discovery will be available
+                here soon.
+              </p>
             </div>
           )}
 
-          {activeTab === "marketplace" && <Marketplace />}
+          {activeTab === "marketplace" && (
+            <Marketplace />
+          )}
         </section>
       </main>
 
@@ -462,7 +582,9 @@ function Marketplace() {
       const res = await fetch(`${API}/products`);
 
       if (!res.ok) {
-        throw new Error("Unable to load products");
+        throw new Error(
+          "Unable to load products"
+        );
       }
 
       const list = await res.json();
@@ -487,7 +609,9 @@ function Marketplace() {
     } catch (err) {
       console.error(err);
       setProducts([]);
-      setError("Unable to load products. Please try again.");
+      setError(
+        "Unable to load products. Please try again."
+      );
     } finally {
       setLoading(false);
     }
@@ -501,13 +625,17 @@ function Marketplace() {
     <div className="marketplace">
       <div className="marketplace-heading">
         <div>
-          <span className="eyebrow">1FI MARKETPLACE</span>
+          <span className="eyebrow">
+            1FI MARKETPLACE
+          </span>
 
-          <h2>Products made easier to pay for.</h2>
+          <h2>
+            Products made easier to pay for.
+          </h2>
 
           <p>
-            Choose a product, select your variant and pick an EMI plan
-            backed by mutual funds.
+            Choose a product, select your variant and
+            pick an EMI plan backed by mutual funds.
           </p>
         </div>
 
@@ -524,7 +652,10 @@ function Marketplace() {
 
           <h3>Loading products...</h3>
 
-          <p>Fetching the latest products and EMI options.</p>
+          <p>
+            Fetching the latest products and EMI
+            options.
+          </p>
         </div>
       )}
 
@@ -534,29 +665,43 @@ function Marketplace() {
 
           <h3>Unable to load products</h3>
 
-          <p>Please check your connection and try again.</p>
+          <p>
+            Please check your connection and try again.
+          </p>
 
-          <button className="retry-btn" onClick={loadProducts}>
+          <button
+            className="retry-btn"
+            onClick={loadProducts}
+          >
             Try Again →
           </button>
         </div>
       )}
 
-      {!loading && !error && products.length === 0 && (
-        <div className="marketplace-status">
-          <h3>No products available</h3>
+      {!loading &&
+        !error &&
+        products.length === 0 && (
+          <div className="marketplace-status">
+            <h3>No products available</h3>
 
-          <p>Please check back again later.</p>
-        </div>
-      )}
+            <p>
+              Please check back again later.
+            </p>
+          </div>
+        )}
 
-      {!loading && !error && products.length > 0 && (
-        <div className="product-grid">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      )}
+      {!loading &&
+        !error &&
+        products.length > 0 && (
+          <div className="product-grid">
+            {products.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+              />
+            ))}
+          </div>
+        )}
     </div>
   );
 }
@@ -566,39 +711,66 @@ function Marketplace() {
 ========================= */
 
 function ProductCard({ product }) {
-  const firstVariant = product.variants?.[0];
+  const firstVariant =
+    product.variants?.[0];
 
-  const lowestPlan = product.emiPlans?.length
-    ? product.emiPlans.reduce((lowest, current) =>
-        Number(current.monthly_payment) < Number(lowest.monthly_payment)
-          ? current
-          : lowest
-      )
-    : null;
+  const lowestPlan =
+    product.emiPlans?.length
+      ? product.emiPlans.reduce(
+          (lowest, current) =>
+            Number(
+              current.monthly_payment
+            ) <
+            Number(
+              lowest.monthly_payment
+            )
+              ? current
+              : lowest
+        )
+      : null;
 
-  const price = Number(firstVariant?.price || product.price);
-  const mrp = Number(firstVariant?.mrp || product.mrp);
-  const discount = Math.round(((mrp - price) / mrp) * 100);
+  const price = Number(
+    firstVariant?.price || product.price
+  );
+
+  const mrp = Number(
+    firstVariant?.mrp || product.mrp
+  );
+
+  const discount = Math.round(
+    ((mrp - price) / mrp) * 100
+  );
 
   return (
-    <Link to={`/products/${product.slug}`} className="product-card">
+    <Link
+      to={`/products/${product.slug}`}
+      className="product-card"
+    >
       <div className="product-image-wrap">
         <img
-          src={firstVariant?.image_url || product.image_url}
+          src={
+            firstVariant?.image_url ||
+            product.image_url
+          }
           alt={product.name}
         />
 
         {product.badge && (
-          <span className="product-badge">{product.badge}</span>
+          <span className="product-badge">
+            {product.badge}
+          </span>
         )}
       </div>
 
       <div className="product-info">
         <div className="product-card-top">
-          <span className="product-brand">{product.brand}</span>
+          <span className="product-brand">
+            {product.brand}
+          </span>
 
           <span className="variant-count">
-            {product.variants?.length || 0}+ variants
+            {product.variants?.length || 0}+
+            variants
           </span>
         </div>
 
@@ -609,9 +781,13 @@ function ProductCard({ product }) {
         </p>
 
         <div className="price-row">
-          <strong>₹{price.toLocaleString()}</strong>
+          <strong>
+            ₹{price.toLocaleString()}
+          </strong>
 
-          <del>₹{mrp.toLocaleString()}</del>
+          <del>
+            ₹{mrp.toLocaleString()}
+          </del>
 
           <span>{discount}% off</span>
         </div>
@@ -623,12 +799,18 @@ function ProductCard({ product }) {
 
               <small>
                 {lowestPlan.tenure_months} months ·{" "}
-                {Number(lowestPlan.interest_rate)}% interest
+                {Number(
+                  lowestPlan.interest_rate
+                )}
+                % interest
               </small>
             </div>
 
             <strong>
-              ₹{Number(lowestPlan.monthly_payment).toLocaleString()}
+              ₹
+              {Number(
+                lowestPlan.monthly_payment
+              ).toLocaleString()}
               <small>/mo</small>
             </strong>
           </div>
@@ -650,15 +832,32 @@ function ProductPage() {
   const { slug } = useParams();
   const navigate = useNavigate();
 
-  const [product, setProduct] = useState(null);
-  const [variantIndex, setVariantIndex] = useState(0);
-  const [imageIndex, setImageIndex] = useState(0);
-  const [planId, setPlanId] = useState(null);
-  const [pincode, setPincode] = useState("");
-  const [delivery, setDelivery] = useState("");
-  const [showConfirm, setShowConfirm] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
-  const [referenceId, setReferenceId] = useState("");
+  const [product, setProduct] =
+    useState(null);
+
+  const [variantIndex, setVariantIndex] =
+    useState(0);
+
+  const [imageIndex, setImageIndex] =
+    useState(0);
+
+  const [planId, setPlanId] =
+    useState(null);
+
+  const [pincode, setPincode] =
+    useState("");
+
+  const [delivery, setDelivery] =
+    useState("");
+
+  const [showConfirm, setShowConfirm] =
+    useState(false);
+
+  const [showSuccess, setShowSuccess] =
+    useState(false);
+
+  const [referenceId, setReferenceId] =
+    useState("");
 
   useEffect(() => {
     setProduct(null);
@@ -669,7 +868,9 @@ function ProductPage() {
     fetch(`${API}/products/${slug}`)
       .then((res) => {
         if (!res.ok) {
-          throw new Error("Product not found");
+          throw new Error(
+            "Product not found"
+          );
         }
 
         return res.json();
@@ -678,53 +879,91 @@ function ProductPage() {
         setProduct(data);
 
         if (data.emiPlans?.length) {
-          setPlanId(data.emiPlans[0].id);
+          setPlanId(
+            data.emiPlans[0].id
+          );
         }
       })
       .catch(() => navigate("/"));
   }, [slug, navigate]);
 
-  const variant = product?.variants?.[variantIndex];
+  const variant =
+    product?.variants?.[variantIndex];
 
-  const plan = product?.emiPlans?.find(
-    (p) => p.id === planId
-  );
+  const plan =
+    product?.emiPlans?.find(
+      (p) => p.id === planId
+    );
 
   /*
-    IMPORTANT IMAGE FIX
+    =========================
+    FIXED GALLERY
+    =========================
 
-    Gallery is built directly from product + variants.
-    No Set() is used, so every variant image keeps its own position.
+    Gallery uses variant images first.
+
+    This prevents:
+    product.image_url
+    +
+    first variant.image_url
+
+    from creating the same thumbnail twice.
+
+    Every variant gets exactly one thumbnail.
   */
   const gallery = useMemo(() => {
     if (!product) return [];
 
-    const images = [
-      product.image_url,
-      ...(product.variants || []).map(
-        (item) => item.image_url
-      ),
+    const variantImages = (
+      product.variants || []
+    )
+      .map((item) => item.image_url)
+      .filter(Boolean);
+
+    /*
+      Remove duplicate image URLs while
+      preserving their original order.
+    */
+    const uniqueImages = [
+      ...new Set(variantImages),
     ];
 
-    return images.filter(Boolean);
+    /*
+      If variants don't have images,
+      fallback to the main product image.
+    */
+    if (uniqueImages.length === 0) {
+      return product.image_url
+        ? [product.image_url]
+        : [];
+    }
+
+    return uniqueImages;
   }, [product]);
 
   /*
-    IMPORTANT IMAGE FIX
-
-    When a variant is selected, find that exact variant image.
+    =========================
+    VARIANT -> IMAGE FIX
+    =========================
   */
   useEffect(() => {
-    if (!product || !variant?.image_url) return;
+    if (!product || !variant) return;
 
-    const foundIndex = gallery.findIndex(
-      (image) => image === variant.image_url
-    );
+    const foundIndex =
+      gallery.findIndex(
+        (image) =>
+          image === variant.image_url
+      );
 
     if (foundIndex !== -1) {
       setImageIndex(foundIndex);
     }
-  }, [variantIndex, product, gallery, variant]);
+  }, [
+    variantIndex,
+    product,
+    gallery,
+    variant,
+  ]);
 
   if (!product) {
     return (
@@ -747,30 +986,41 @@ function ProductPage() {
     variant?.mrp || product.mrp
   );
 
-  const savings = selectedMrp - selectedPrice;
+  const savings =
+    selectedMrp - selectedPrice;
 
   const discountPercent = Math.round(
     (savings / selectedMrp) * 100
   );
 
-  const cashback = Number(plan?.cashback || 0);
+  const cashback = Number(
+    plan?.cashback || 0
+  );
 
   const totalPayable =
-    Number(plan?.monthly_payment || 0) *
-    Number(plan?.tenure_months || 0);
+    Number(
+      plan?.monthly_payment || 0
+    ) *
+    Number(
+      plan?.tenure_months || 0
+    );
 
   const afterCashback = Math.max(
     totalPayable - cashback,
     0
   );
 
-  const maxCashback = product.emiPlans?.length
-    ? Math.max(
-        ...product.emiPlans.map(
-          (item) => Number(item.cashback || 0)
+  const maxCashback =
+    product.emiPlans?.length
+      ? Math.max(
+          ...product.emiPlans.map(
+            (item) =>
+              Number(
+                item.cashback || 0
+              )
+          )
         )
-      )
-    : 0;
+      : 0;
 
   const previousImage = () => {
     if (gallery.length === 0) return;
@@ -793,7 +1043,11 @@ function ProductPage() {
   };
 
   const checkDelivery = () => {
-    if (!/^[1-9][0-9]{5}$/.test(pincode)) {
+    if (
+      !/^[1-9][0-9]{5}$/.test(
+        pincode
+      )
+    ) {
       setDelivery(
         "Please enter a valid 6-digit pincode."
       );
@@ -867,7 +1121,8 @@ function ProductPage() {
                   product.image_url
                 }
                 alt={`${product.name} - ${
-                  variant?.value || "Product"
+                  variant?.value ||
+                  "Product"
                 }`}
               />
 
@@ -885,50 +1140,57 @@ function ProductPage() {
               </span>
 
               <span className="gallery-label">
-                {variant?.value || "Premium product view"}
+                {variant?.value ||
+                  "Premium product view"}
               </span>
             </div>
 
+            {/* THUMBNAILS */}
             <div className="thumbnail-row">
-              {gallery.map((image, index) => (
-                <button
-                  key={`${image}-${index}`}
-                  className={`thumbnail ${
-                    imageIndex === index
-                      ? "active"
-                      : ""
-                  }`}
-                  onClick={() => {
-                    setImageIndex(index);
-
-                    const selectedImage =
-                      gallery[index];
-
-                    const selectedVariantIndex =
-                      product.variants?.findIndex(
-                        (item) =>
-                          item.image_url ===
-                          selectedImage
-                      );
-
-                    if (
-                      selectedVariantIndex !== -1 &&
-                      selectedVariantIndex !== undefined
-                    ) {
-                      setVariantIndex(
-                        selectedVariantIndex
-                      );
-                    }
-                  }}
-                >
-                  <img
-                    src={image}
-                    alt={`${product.name} thumbnail ${
-                      index + 1
+              {gallery.map(
+                (image, index) => (
+                  <button
+                    key={`${image}-${index}`}
+                    className={`thumbnail ${
+                      imageIndex === index
+                        ? "active"
+                        : ""
                     }`}
-                  />
-                </button>
-              ))}
+                    onClick={() => {
+                      setImageIndex(index);
+
+                      /*
+                        Find which variant owns
+                        this image.
+                      */
+                      const selectedVariantIndex =
+                        product.variants?.findIndex(
+                          (item) =>
+                            item.image_url ===
+                            image
+                        );
+
+                      if (
+                        selectedVariantIndex !==
+                          -1 &&
+                        selectedVariantIndex !==
+                          undefined
+                      ) {
+                        setVariantIndex(
+                          selectedVariantIndex
+                        );
+                      }
+                    }}
+                  >
+                    <img
+                      src={image}
+                      alt={`${product.name} thumbnail ${
+                        index + 1
+                      }`}
+                    />
+                  </button>
+                )
+              )}
             </div>
           </div>
 
@@ -969,18 +1231,23 @@ function ProductPage() {
             {/* PRICE */}
             <div className="price-block">
               <strong>
-                ₹{selectedPrice.toLocaleString()}
+                ₹
+                {selectedPrice.toLocaleString()}
               </strong>
 
               <del>
-                ₹{selectedMrp.toLocaleString()}
+                ₹
+                {selectedMrp.toLocaleString()}
               </del>
 
-              <span>{discountPercent}% off</span>
+              <span>
+                {discountPercent}% off
+              </span>
             </div>
 
             <div className="saving-text">
-              You save ₹{savings.toLocaleString()} on
+              You save ₹
+              {savings.toLocaleString()} on
               this variant
             </div>
 
@@ -1003,9 +1270,13 @@ function ProductPage() {
             {/* VARIANT */}
             <div className="selection-box">
               <div className="selection-title">
-                <strong>Select variant</strong>
+                <strong>
+                  Select variant
+                </strong>
 
-                <span>{variant?.type}</span>
+                <span>
+                  {variant?.type}
+                </span>
               </div>
 
               <div className="variant-grid">
@@ -1019,15 +1290,14 @@ function ProductPage() {
                           : ""
                       }`}
                       onClick={() => {
-                        /*
-                          Directly select the variant.
-                          useEffect above will select
-                          the matching image.
-                        */
-                        setVariantIndex(index);
+                        setVariantIndex(
+                          index
+                        );
                       }}
                     >
-                      <span>{item.value}</span>
+                      <span>
+                        {item.value}
+                      </span>
 
                       <strong>
                         ₹
@@ -1049,11 +1319,13 @@ function ProductPage() {
                     FLEXIBLE PAYMENTS
                   </span>
 
-                  <h2>Choose your EMI</h2>
+                  <h2>
+                    Choose your EMI
+                  </h2>
 
                   <p>
-                    Select the plan that fits your
-                    monthly budget.
+                    Select the plan that fits
+                    your monthly budget.
                   </p>
                 </div>
 
@@ -1073,7 +1345,9 @@ function ProductPage() {
                           : ""
                       }`}
                       onClick={() =>
-                        setPlanId(item.id)
+                        setPlanId(
+                          item.id
+                        )
                       }
                     >
                       <div className="emi-check">
@@ -1099,7 +1373,8 @@ function ProductPage() {
 
                       <div className="emi-meta">
                         <span>
-                          {item.tenure_months} months
+                          {item.tenure_months}{" "}
+                          months
                         </span>
 
                         <span>
@@ -1130,7 +1405,9 @@ function ProductPage() {
               {plan && (
                 <div className="emi-summary">
                   <div>
-                    <span>Monthly EMI</span>
+                    <span>
+                      Monthly EMI
+                    </span>
 
                     <strong>
                       ₹
@@ -1141,15 +1418,20 @@ function ProductPage() {
                   </div>
 
                   <div>
-                    <span>Tenure</span>
+                    <span>
+                      Tenure
+                    </span>
 
                     <strong>
-                      {plan.tenure_months} months
+                      {plan.tenure_months}{" "}
+                      months
                     </strong>
                   </div>
 
                   <div>
-                    <span>Total payable</span>
+                    <span>
+                      Total payable
+                    </span>
 
                     <strong>
                       ₹
@@ -1158,7 +1440,9 @@ function ProductPage() {
                   </div>
 
                   <div>
-                    <span>After cashback</span>
+                    <span>
+                      After cashback
+                    </span>
 
                     <strong className="green">
                       ₹
@@ -1177,8 +1461,8 @@ function ProductPage() {
                 </strong>
 
                 <span>
-                  Enter your pincode to check delivery
-                  availability.
+                  Enter your pincode to check
+                  delivery availability.
                 </span>
               </div>
 
@@ -1197,7 +1481,9 @@ function ProductPage() {
                   placeholder="Enter pincode"
                 />
 
-                <button onClick={checkDelivery}>
+                <button
+                  onClick={checkDelivery}
+                >
                   Check
                 </button>
               </div>
@@ -1205,7 +1491,9 @@ function ProductPage() {
               {delivery && (
                 <p
                   className={
-                    delivery.startsWith("Great")
+                    delivery.startsWith(
+                      "Great"
+                    )
                       ? "success-text"
                       : "error-text"
                   }
@@ -1217,15 +1505,25 @@ function ProductPage() {
 
             <button
               className="continue-btn"
-              onClick={continuePurchase}
+              onClick={
+                continuePurchase
+              }
             >
               Continue with EMI →
             </button>
 
             <div className="confidence-row">
-              <div>🔒 Secure checkout</div>
-              <div>↻ Easy returns</div>
-              <div>✓ Trusted payment</div>
+              <div>
+                🔒 Secure checkout
+              </div>
+
+              <div>
+                ↻ Easy returns
+              </div>
+
+              <div>
+                ✓ Trusted payment
+              </div>
             </div>
           </div>
         </section>
@@ -1238,11 +1536,13 @@ function ProductPage() {
                 AT A GLANCE
               </span>
 
-              <h2>Product highlights.</h2>
+              <h2>
+                Product highlights.
+              </h2>
 
               <p>
-                Everything important about this product
-                in one place.
+                Everything important about this
+                product in one place.
               </p>
             </div>
           </div>
@@ -1252,10 +1552,13 @@ function ProductPage() {
               <span>💰</span>
 
               <div>
-                <small>Current price</small>
+                <small>
+                  Current price
+                </small>
 
                 <strong>
-                  ₹{selectedPrice.toLocaleString()}
+                  ₹
+                  {selectedPrice.toLocaleString()}
                 </strong>
               </div>
             </div>
@@ -1267,7 +1570,8 @@ function ProductPage() {
                 <small>You save</small>
 
                 <strong>
-                  ₹{savings.toLocaleString()}
+                  ₹
+                  {savings.toLocaleString()}
                 </strong>
               </div>
             </div>
@@ -1281,7 +1585,8 @@ function ProductPage() {
                 </small>
 
                 <strong>
-                  {product.variants.length} options
+                  {product.variants.length}{" "}
+                  options
                 </strong>
               </div>
             </div>
@@ -1293,7 +1598,8 @@ function ProductPage() {
                 <small>EMI plans</small>
 
                 <strong>
-                  {product.emiPlans.length} plans
+                  {product.emiPlans.length}{" "}
+                  plans
                 </strong>
               </div>
             </div>
@@ -1307,7 +1613,8 @@ function ProductPage() {
                 </small>
 
                 <strong>
-                  ₹{maxCashback.toLocaleString()}
+                  ₹
+                  {maxCashback.toLocaleString()}
                 </strong>
               </div>
             </div>
@@ -1318,7 +1625,9 @@ function ProductPage() {
               <div>
                 <small>Financing</small>
 
-                <strong>Mutual Funds</strong>
+                <strong>
+                  Mutual Funds
+                </strong>
               </div>
             </div>
           </div>
@@ -1327,53 +1636,69 @@ function ProductPage() {
         {/* INFORMATION */}
         <section className="info-section">
           <div className="info-card">
-            <span className="info-icon">🚚</span>
+            <span className="info-icon">
+              🚚
+            </span>
 
             <div>
-              <h3>Shipping & Delivery</h3>
+              <h3>
+                Shipping & Delivery
+              </h3>
 
               <p>
-                Fast and reliable doorstep delivery with
-                order tracking.
+                Fast and reliable doorstep delivery
+                with order tracking.
               </p>
             </div>
           </div>
 
           <div className="info-card">
-            <span className="info-icon">🛡️</span>
+            <span className="info-icon">
+              🛡️
+            </span>
 
             <div>
-              <h3>Shop with Confidence</h3>
+              <h3>
+                Shop with Confidence
+              </h3>
 
               <p>
-                Secure payments, transparent pricing and
-                trusted sellers.
+                Secure payments, transparent pricing
+                and trusted sellers.
               </p>
             </div>
           </div>
 
           <div className="info-card">
-            <span className="info-icon">💳</span>
+            <span className="info-icon">
+              💳
+            </span>
 
             <div>
-              <h3>Flexible EMI</h3>
+              <h3>
+                Flexible EMI
+              </h3>
 
               <p>
-                Compare multiple tenures and select the
-                payment that works best for you.
+                Compare multiple tenures and select
+                the payment that works best for you.
               </p>
             </div>
           </div>
 
           <div className="info-card">
-            <span className="info-icon">🎁</span>
+            <span className="info-icon">
+              🎁
+            </span>
 
             <div>
-              <h3>Cashback Benefits</h3>
+              <h3>
+                Cashback Benefits
+              </h3>
 
               <p>
-                Selected EMI plans can include attractive
-                cashback benefits.
+                Selected EMI plans can include
+                attractive cashback benefits.
               </p>
             </div>
           </div>
@@ -1386,7 +1711,9 @@ function ProductPage() {
               PRODUCT DETAILS
             </span>
 
-            <h2>Everything you need to know.</h2>
+            <h2>
+              Everything you need to know.
+            </h2>
 
             <p>
               Detailed information about your selected
@@ -1396,66 +1723,100 @@ function ProductPage() {
 
           <div className="details-layout">
             <div className="details-panel">
-              <h3>Product information</h3>
+              <h3>
+                Product information
+              </h3>
 
               <div className="details-grid">
                 <div>
                   <span>Brand</span>
-                  <strong>{product.brand}</strong>
+                  <strong>
+                    {product.brand}
+                  </strong>
                 </div>
 
                 <div>
                   <span>Product</span>
-                  <strong>{product.name}</strong>
-                </div>
-
-                <div>
-                  <span>Selected variant</span>
-                  <strong>{variant?.value}</strong>
-                </div>
-
-                <div>
-                  <span>Original MRP</span>
                   <strong>
-                    ₹{selectedMrp.toLocaleString()}
+                    {product.name}
                   </strong>
                 </div>
 
                 <div>
-                  <span>Current price</span>
+                  <span>
+                    Selected variant
+                  </span>
+
                   <strong>
-                    ₹{selectedPrice.toLocaleString()}
+                    {variant?.value}
                   </strong>
                 </div>
 
                 <div>
-                  <span>Discount</span>
+                  <span>
+                    Original MRP
+                  </span>
+
+                  <strong>
+                    ₹
+                    {selectedMrp.toLocaleString()}
+                  </strong>
+                </div>
+
+                <div>
+                  <span>
+                    Current price
+                  </span>
+
+                  <strong>
+                    ₹
+                    {selectedPrice.toLocaleString()}
+                  </strong>
+                </div>
+
+                <div>
+                  <span>
+                    Discount
+                  </span>
+
                   <strong>
                     {discountPercent}% off
                   </strong>
                 </div>
 
                 <div>
-                  <span>Available variants</span>
+                  <span>
+                    Available variants
+                  </span>
+
                   <strong>
                     {product.variants.length}
                   </strong>
                 </div>
 
                 <div>
-                  <span>Payment method</span>
-                  <strong>Flexible EMI</strong>
+                  <span>
+                    Payment method
+                  </span>
+
+                  <strong>
+                    Flexible EMI
+                  </strong>
                 </div>
               </div>
             </div>
 
             <div className="details-panel">
-              <h3>Payment information</h3>
+              <h3>
+                Payment information
+              </h3>
 
               {plan ? (
                 <div className="payment-details">
                   <div>
-                    <span>Selected EMI</span>
+                    <span>
+                      Selected EMI
+                    </span>
 
                     <strong>
                       ₹
@@ -1467,15 +1828,20 @@ function ProductPage() {
                   </div>
 
                   <div>
-                    <span>Tenure</span>
+                    <span>
+                      Tenure
+                    </span>
 
                     <strong>
-                      {plan.tenure_months} months
+                      {plan.tenure_months}{" "}
+                      months
                     </strong>
                   </div>
 
                   <div>
-                    <span>Interest rate</span>
+                    <span>
+                      Interest rate
+                    </span>
 
                     <strong>
                       {Number(
@@ -1486,7 +1852,9 @@ function ProductPage() {
                   </div>
 
                   <div>
-                    <span>Cashback</span>
+                    <span>
+                      Cashback
+                    </span>
 
                     <strong className="green">
                       ₹
@@ -1497,7 +1865,9 @@ function ProductPage() {
                   </div>
 
                   <div>
-                    <span>Total payable</span>
+                    <span>
+                      Total payable
+                    </span>
 
                     <strong>
                       ₹
@@ -1506,7 +1876,9 @@ function ProductPage() {
                   </div>
 
                   <div>
-                    <span>After cashback</span>
+                    <span>
+                      After cashback
+                    </span>
 
                     <strong className="green">
                       ₹
@@ -1516,8 +1888,8 @@ function ProductPage() {
                 </div>
               ) : (
                 <p>
-                  Select an EMI plan to see payment
-                  details.
+                  Select an EMI plan to see
+                  payment details.
                 </p>
               )}
             </div>
@@ -1532,11 +1904,13 @@ function ProductPage() {
                 CUSTOMER REVIEWS
               </span>
 
-              <h2>Loved by shoppers.</h2>
+              <h2>
+                Loved by shoppers.
+              </h2>
 
               <p>
-                See what customers think about the shopping
-                experience.
+                See what customers think about the
+                shopping experience.
               </p>
             </div>
 
@@ -1545,7 +1919,9 @@ function ProductPage() {
 
               <span>★★★★★</span>
 
-              <small>1,248 ratings</small>
+              <small>
+                1,248 ratings
+              </small>
             </div>
           </div>
 
@@ -1583,25 +1959,33 @@ function ProductPage() {
               ×
             </button>
 
-            <div className="modal-icon">✓</div>
+            <div className="modal-icon">
+              ✓
+            </div>
 
             <span className="eyebrow">
               CONFIRM ORDER
             </span>
 
-            <h2>Ready to continue?</h2>
+            <h2>
+              Ready to continue?
+            </h2>
 
             <div className="modal-summary">
               <div>
                 <span>Product</span>
 
-                <strong>{product.name}</strong>
+                <strong>
+                  {product.name}
+                </strong>
               </div>
 
               <div>
                 <span>Variant</span>
 
-                <strong>{variant?.value}</strong>
+                <strong>
+                  {variant?.value}
+                </strong>
               </div>
 
               <div>
@@ -1610,7 +1994,8 @@ function ProductPage() {
                 <strong>
                   ₹
                   {Number(
-                    plan?.monthly_payment || 0
+                    plan?.monthly_payment ||
+                      0
                   ).toLocaleString()}
                   /month
                 </strong>
@@ -1620,14 +2005,18 @@ function ProductPage() {
                 <span>Tenure</span>
 
                 <strong>
-                  {plan?.tenure_months || 0} months
+                  {plan?.tenure_months ||
+                    0}{" "}
+                  months
                 </strong>
               </div>
             </div>
 
             <button
               className="continue-btn"
-              onClick={confirmPurchase}
+              onClick={
+                confirmPurchase
+              }
             >
               Confirm & Proceed
             </button>
@@ -1648,39 +2037,52 @@ function ProductPage() {
       {showSuccess && (
         <div className="modal-overlay">
           <div className="modal success-modal">
-            <div className="success-icon">✓</div>
+            <div className="success-icon">
+              ✓
+            </div>
 
             <span className="eyebrow">
               ORDER CONFIRMED
             </span>
 
-            <h2>You're all set! 🎉</h2>
+            <h2>
+              You're all set! 🎉
+            </h2>
 
             <p>
-              Your EMI selection has been successfully
-              confirmed.
+              Your EMI selection has been
+              successfully confirmed.
             </p>
 
             <div className="reference-box">
-              <span>REFERENCE ID</span>
+              <span>
+                REFERENCE ID
+              </span>
 
-              <strong>{referenceId}</strong>
+              <strong>
+                {referenceId}
+              </strong>
             </div>
 
             <div className="success-details">
               <div>
                 <span>Product</span>
 
-                <strong>{product.name}</strong>
+                <strong>
+                  {product.name}
+                </strong>
               </div>
 
               <div>
-                <span>Monthly EMI</span>
+                <span>
+                  Monthly EMI
+                </span>
 
                 <strong>
                   ₹
                   {Number(
-                    plan?.monthly_payment || 0
+                    plan?.monthly_payment ||
+                      0
                   ).toLocaleString()}
                 </strong>
               </div>
@@ -1731,7 +2133,10 @@ function Footer() {
     <footer className="footer">
       <div className="footer-main">
         <div className="footer-brand">
-          <Link to="/" className="logo">
+          <Link
+            to="/"
+            className="logo"
+          >
             <span className="logo-mark">
               <span className="logo-inner">
                 ↑Fi
@@ -1759,7 +2164,9 @@ function Footer() {
               <span>
                 <small>GET IT ON</small>
 
-                <strong>Google Play</strong>
+                <strong>
+                  Google Play
+                </strong>
               </span>
             </a>
 
@@ -1779,7 +2186,9 @@ function Footer() {
                   Download on the
                 </small>
 
-                <strong>App Store</strong>
+                <strong>
+                  App Store
+                </strong>
               </span>
             </a>
           </div>
